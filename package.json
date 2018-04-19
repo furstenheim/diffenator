@@ -1,0 +1,15 @@
+{
+  "name": "diffenator",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Gabriel Fürstenheim <furstenheim@gmail.com>",
+  "license": "ISC",
+  "dependencies": {
+    "madge": "^3.0.1"
+  }
+}
