@@ -18,8 +18,7 @@ describe('Diffenator', function () {
       expect(result).a('promise')
       const files = await result
       expect(files).a('array')
-      expect(files).be([filePath])
-
+      expect(files).deep.equal(['test/testHead/b.js'])
     })
   })
 })
