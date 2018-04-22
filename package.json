@@ -6,6 +6,9 @@
   "scripts": {
     "test": "mocha test/main.js"
   },
+  "bin": {
+    "diffenator": "./bin/diffenator"
+  },
   "keywords": [],
   "author": "Gabriel Fürstenheim <furstenheim@gmail.com>",
   "license": "ISC",

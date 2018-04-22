@@ -5,7 +5,7 @@ const spawn = require('@expo/spawn-async')
 const mocha = require('mocha')
 const minimatch = require('minimatch')
 
-async function main (route) {
+async function main (route, gitReference) {
   // TODO accept multiple routes
   const git = await getGit(route)
   const madge = await getMadge(route)
