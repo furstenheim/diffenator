@@ -5,11 +5,11 @@ const spawn = require('@expo/spawn-async')
 const mocha = require('mocha')
 const minimatch = require('minimatch')
 
-async function main (route, gitReference) {
+async function main (route, gitReference, isRecursive) {
   // TODO accept multiple routes
   const git = await getGit(route, gitReference)
   const madge = await getMadge(route)
-  const mocha = getMocha(route)
+  const mocha = getMocha(route, isRecursive)
 
 
   return mocha.filter(f => isModified(f, madge, git, {}))
@@ -54,11 +54,11 @@ async function getGit (route, gitReference) {
   return linesSet
 }
 
-function getMocha (route) {
+function getMocha (route, isRecursive) {
   const files = []
   const extensions = ['js'] // TODO accept more extensions through compiler
   try {
-    return mocha.utils.lookupFiles(route, extensions, false) // TODO accept recursive
+    return mocha.utils.lookupFiles(route, extensions, isRecursive)
   } catch (err) {
     console.error('Error looking up files')
   }
