@@ -41,7 +41,7 @@ async function getMadge (route) {
 }
 
 async function getGit (route, gitReference) {
-  const args = ['diff', '--name-only']
+  const args = ['diff', '--name-only', '--relative']
   if (gitReference) {
     args.splice(1, 0, gitReference)
   }
