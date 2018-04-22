@@ -25,7 +25,7 @@ function isModified (file, graph, git, visitedNodes) {
     return true
   }
   if (!graph[file]) {
-    throw new Error('File was not found by madge')
+    throw new Error('File was not found by madge: ' + file)
   }
   for (const dependency of graph[file]) {
     if (isModified(dependency, graph, git, visitedNodes)) {
@@ -36,14 +36,12 @@ function isModified (file, graph, git, visitedNodes) {
 }
 
 async function getMadge (route) {
-  console.log(route)
-  const res = await madge(route, {baseDir: __dirname})
+  const res = await madge(route, {baseDir: process.cwd()})
   return res.obj()
 }
 
 async function getGit (route) {
   const git = await spawn('git', ['diff', '--name-only'])
-  console.log(__dirname, process.cwd())
   const lines = git.stdout.split('\n')
   const linesSet = {}
   for (let i = 0; i < lines.length - 1; i++) {

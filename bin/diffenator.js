@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 const main = require('../main')
 const routes = []
 let isProcessingFiles = false
@@ -19,7 +21,9 @@ process.argv.slice(2).forEach(function (arg) {
 })
 
 // TODO several routes
-const files = gitReference(routes.length === 0 ? '' : routes[0], gitReference)
-for (const file of files) {
-  console.log(file)
-}
+main(routes.length === 0 ? './' : routes[0], gitReference)
+  .then(function (files) {
+    for (const file of files) {
+      console.log(file)
+    }
+  })
