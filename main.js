@@ -7,7 +7,7 @@ const minimatch = require('minimatch')
 
 async function main (route, gitReference) {
   // TODO accept multiple routes
-  const git = await getGit(route)
+  const git = await getGit(route, gitReference)
   const madge = await getMadge(route)
   const mocha = getMocha(route)
 
@@ -40,8 +40,12 @@ async function getMadge (route) {
   return res.obj()
 }
 
-async function getGit (route) {
-  const git = await spawn('git', ['diff', '--name-only'])
+async function getGit (route, gitReference) {
+  const args = ['diff', '--name-only']
+  if (gitReference) {
+    args.splice(1, 0, gitReference)
+  }
+  const git = await spawn('git', args)
   const lines = git.stdout.split('\n')
   const linesSet = {}
   for (let i = 0; i < lines.length - 1; i++) {

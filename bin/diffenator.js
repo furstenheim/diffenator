@@ -15,6 +15,9 @@ process.argv.slice(2).forEach(function (arg) {
   switch (arg) {
     case '--recursive':
       throw new Error('Recursive not yet supported')
+    case '--':
+      isProcessingFiles = true
+      break
     default:
       gitReference = arg
   }
